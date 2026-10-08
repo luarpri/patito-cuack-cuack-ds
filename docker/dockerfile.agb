@@ -9,7 +9,7 @@ COPY --from=butano_install /butano/ /butano/
 COPY . .
 
 # butano dosent seem to work with the multi-makefile setup so we need to patch it
-RUN wget -O /app/butano/butano/tools/common_setup.mak "https://raw.githubusercontent.com/luarpri/patito-cuack-cuack-ds/refs/heads/main/patches/common_setup.mak"
+RUN wget -O /app/butano/butano/butano/tools/common_setup.mak "https://raw.githubusercontent.com/luarpri/patito-cuack-cuack-ds/refs/heads/main/patches/common_setup.mak"
 RUN make PLATFORM=gba
 FROM scratch AS exporter
 COPY --from=main_builder /app/patito-cuac-cuac-gba.gba /
