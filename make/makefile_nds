@@ -28,7 +28,7 @@ TARGET		:=	patito-cuac-cuac-nds
 BUILD		:=	build
 SOURCES		:=	source source/platforms/nds/
 INCLUDES	:=	include
-MUSIC       :=  audio/nds
+MUSIC       :=  audio
 GRAPHICS	:=	gfx/nds
 
 #---------------------------------------------------------------------------------
