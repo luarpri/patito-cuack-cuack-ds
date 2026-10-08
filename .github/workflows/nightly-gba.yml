@@ -7,7 +7,7 @@ on:
       - audio/*
       - gfx/gba/*
       - .github/workflows/nightly-gba.yml
-      - docker/dockerfile.gba
+      - docker/dockerfile.agb
       - source/main.cpp
     branches:
       - main
@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          file: docker/dockerfile.gba
+          file: docker/dockerfile.agb
           target: exporter
           outputs: type=local,dest=.
       - name: Upload Artifact
