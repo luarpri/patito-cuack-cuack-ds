@@ -4,10 +4,10 @@ on:
   push:
     paths:
       - source/platforms/nds/*
-      - audio/nds/*
+      - audio/*
       - gfx/nds/*
       - .github/workflows/nightly-nds.yml
-      - docker/dockerfile.nds
+      - docker/dockerfile.ds
       - source/main.cpp
     branches:
       - main

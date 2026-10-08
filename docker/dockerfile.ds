@@ -1,0 +1,7 @@
+FROM devkitpro/devkitarm:latest AS main_builder
+WORKDIR /app
+COPY . .
+
+RUN make PLATFORM=nds
+FROM scratch AS exporter
+COPY --from=main_builder /app/patito-cuac-cuac-nds.nds /

@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - source/platforms/gba/*
-      - audio/gba/*
+      - audio/*
       - gfx/gba/*
       - .github/workflows/nightly-gba.yml
       - docker/dockerfile.gba
