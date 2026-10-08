@@ -1,6 +1,6 @@
 FROM debian:bookworm AS butano_install
 WORKDIR /butano
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential git
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential git ca-certificates
 RUN git clone https://github.com/GValiente/butano.git
 
 FROM devkitpro/devkitarm:latest AS main_builder
