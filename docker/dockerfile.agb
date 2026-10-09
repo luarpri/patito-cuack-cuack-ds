@@ -1,15 +1,20 @@
-FROM debian:bookworm AS butano_install
+FROM debian:bookworm AS butano
+
 WORKDIR /butano
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential git ca-certificates
+
+# downloads butano
+RUN apt-get update && apt-get install -y git
 RUN git clone https://github.com/GValiente/butano.git
+# patches butano
+RUN wget -O /butano/tools/common_setup.mak https://raw.githubusercontent.com/Luapree/patito-cuac-cuac-ds/refs/heads/main/patches/common_setup.mak
 
 FROM devkitpro/devkitarm:latest AS main_builder
 WORKDIR /app
-COPY --from=butano_install /butano/ /butano/
-COPY . .
+COPY --from=butano /butano /butano
 
-# butano dosent seem to work with the multi-makefile setup so we need to patch it
-RUN wget -O /app/butano/butano/butano/tools/common_setup.mak "https://raw.githubusercontent.com/luarpri/patito-cuack-cuack-ds/refs/heads/main/patches/common_setup.mak"
+# builds the binary
+COPY . .
 RUN make PLATFORM=gba
+
 FROM scratch AS exporter
-COPY --from=main_builder /app/patito-cuac-cuac-gba.gba /
+COPY --from=main_builder /app/patito-cuac-cuac-gba.gba /patito-cuac-cuac-gba.gba
